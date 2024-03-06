@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { columnGroupingQ1, columnsQ1 } from "./Quartil1";
