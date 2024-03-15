@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "legal": "Pausalac",
+    "firmId": "123456",
+    "name": "Company A",
+    "emp": 50,
+    "q1pdv": "Da",
+    "q1porezNaDobit": "Ne",
+    "q1ios": "Da",
+    "q1dl1": "Ne",
+    "q1mesecni": "Da"
+  },
+  {
+    "id": 2,
+    "legal": "DOO",
+    "firmId": "654321",
+    "name": "Company B",
+    "emp": 100,
+    "q1pdv": "Da",
+    "q1porezNaDobit": "Ne",
+    "q1ios": "Da",
+    "q1dl1": "Ne",
+    "q1mesecni": "Da"
+  },
+  {
+    "id": 3,
+    "legal": "Pausalac",
+    "firmId": "987654",
+    "name": "Company C",
+    "emp": 25,
+    "q1pdv": "Da",
+    "q1porezNaDobit": "Ne",
+    "q1ios": "Da",
+    "q1dl1": "Ne",
+    "q1mesecni": "Da"
+  }
+]

@@ -5,51 +5,56 @@ import {
 } from "@mui/x-data-grid";
 
 export const columnsQ1: GridColDef[] = [
-  { field: "quartil1.pdv", headerName: "PDV", width: 90 },
+  { field: "q1pdv",type: 'singleSelect', valueOptions: ["Da","Ne"], headerName: "PDV", width: 90, editable:true}, 
   {
-    field: "quartil1.porezNaDobit",
+    field: "q1porezNaDobit",
     headerName: "Porez na dobit",
-    width: 150,
+    width: 150, type: 'singleSelect', valueOptions: ["Da","Ne"],
     editable:true,
   },
   {
-    field: "quartil1.ios",
+    field: "q1ios",
     headerName: "IOS",
-    width: 150,
+    width: 150,type: 'singleSelect', valueOptions: ["Da","Ne"],
+    editable:true,
   },
   {
-    field: "quartil1.dl1",
+    field: "q1dl1",
     headerName: "dl1",
-    type: "string",
-    width: 110,
+    width: 110,type: 'singleSelect', valueOptions: ["Da","Ne"],
+    editable:true,
   },
   {
-    field: "quartil1.mesecni",
+    field: "q1mesecni",
     headerName: "Mesecni Izvestaj",
-    type: "string",
-    width: 110,
+    width: 110,type: 'singleSelect', valueOptions: ["Da","Ne"],
+    editable:true,
   },
 ];
-
-const rows = [
-  { id: 1, pdv: "da", porezNaDobit: "da", ios: "ne", dl1: "da", msecni: "da" },
-  { id: 2, pdv: "ne", porezNaDobit: "ne", ios: "da", dl1: "da", msecni: "da" },
-  { id: 3, pdv: "da", porezNaDobit: "da", ios: "ne", dl1: "da", msecni: "ne" },
-  { id: 4, pdv: "ne", porezNaDobit: "da", ios: "da", dl1: "da", msecni: "da" },
-  { id: 5, pdv: "da", porezNaDobit: "da", ios: "ne", dl1: "da", msecni: "ne" },
-  // Add more rows as needed
+export const rows = [
+  { id: 1, "quartil1.pdv": "da", "q1poreznadobit": "ne", "q1ios": "da", "q1dl1": "ne", "q1mesecni": "da" },
+  { id: 2, "q1pdv": "ne", "q1poreznadobit": "da", "q1ios": "ne", "q1dl1": "da", "q1mesecni": "ne" },
+  // add more dummy rows as needed
 ];
+// const rows = [
+//   { id: 1, pdv: "da", porezNaDobit: "da", ios: "ne", dl1: "da", msecni: "da" },
+//   { id: 2, pdv: "ne", porezNaDobit: "ne", ios: "da", dl1: "da", msecni: "da" },
+//   { id: 3, pdv: "da", porezNaDobit: "da", ios: "ne", dl1: "da", msecni: "ne" },
+//   { id: 4, pdv: "ne", porezNaDobit: "da", ios: "da", dl1: "da", msecni: "da" },
+//   { id: 5, pdv: "da", porezNaDobit: "da", ios: "ne", dl1: "da", msecni: "ne" },
+//   // Add more rows as needed
+// ];
 
 export const columnGroupingQ1: GridColumnGroupingModel = [
   {
     groupId: "Januar",
     headerClassName: "quartil1-januar", //for css
     children: [
-      { field: "quartil1.porezNaDobit" },
-      { field: "quartil1.pdv" },
-      { field: "quartil1.ios" },
-      { field: "quartil1.dl1" },
-      { field: "quartil1.mesecni" },
+      { field: "q1porezNaDobit" },
+      { field: "q1pdv" },
+      { field: "q1ios" },
+      { field: "q1dl1" },
+      { field: "q1mesecni" },
     ],
   },
 ];

@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useEffect,useState } from "react";
+import { Button } from "@mui/material";
+import { DataGrid, GridColDef,GridToolbarContainer } from "@mui/x-data-grid";
 import { columnGroupingQ1, columnsQ1 } from "./Quartil1";
 import { columnGroupingQ2, columnsQ2 } from "./Quartil2";
 import { columnGroupingQ4, columnsQ4 } from "./Quartil4";
 import { columnGroupingQ3, columnsQ3 } from "./Quarti3";
+import AddIcon from '@mui/icons-material/Add';
+import * as Realm from "realm-web";
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "legal", headerName: "Pausalac/DOO", width: 130 },
@@ -22,9 +25,38 @@ const columns: GridColDef[] = [
   },
 ];
 
+
+function EditToolbar() {
+
+  const handleClick = () => {
+    console.log("You bro how are you")
+  };
+
+  return (
+    <GridToolbarContainer>
+      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+        Add record
+      </Button>
+    </GridToolbarContainer>
+  );
+}
 export default function DataTable() {
   const [selectedQuartil, setSelectedQuartil] = useState<number | null>(1);
-
+  const [companies, setCompanies] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const app = new Realm.App({ id: "application-1-qmokd" });
+      const credentials = Realm.Credentials.anonymous();
+      try {
+        const user = await app.logIn(credentials);
+        const response = await user.functions.getAllCompany();
+        setCompanies(response)
+      } catch(err) {
+        console.error("Failed to log in", err);
+      }
+ }
+fetchData();
+}, []);
   const handleQuartilChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedQuartil(parseInt(event.target.value));
   };
@@ -43,43 +75,6 @@ export default function DataTable() {
         return [];
     }
   };
-
-  const rows = [
-    {
-      id: 1,
-      legal: "DOO",
-      firmId: 132,
-      name: "Moja firma",
-      emp: 4,
-      quartil1: 1,
-      quartil2: 2,
-      quartil3: 3,
-      quartil4: 4,
-    },
-    {
-      id: 2,
-      legal: "Pausalac",
-      firmId: 1244,
-      name: "Firma neka",
-      emp: 37,
-      quartil1: 2,
-      quartil2: 3,
-      quartil3: 4,
-      quartil4: 1,
-    },
-    {
-      id: 3,
-      legal: "DOO",
-      firmId: 262,
-      name: "Neka firma tamo",
-      emp: 24,
-      quartil1: 3,
-      quartil2: 4,
-      quartil3: 1,
-      quartil4: 2,
-    },
-  ];
-
   return (
     <div style={{ height: "100%", width: "1500px" }}>
       <div>
@@ -121,7 +116,7 @@ export default function DataTable() {
         <label htmlFor="quartil4">Quartil 4</label>
       </div>
       <DataGrid
-        rows={rows}
+        rows={companies}
         columns={[
           ...columns,
           ...(selectedQuartil ? renderQuartilColumn(selectedQuartil) : []),
@@ -142,14 +137,18 @@ export default function DataTable() {
           },
         }}
         experimentalFeatures={{ columnGrouping: true }}
-        columnGroupingModel={[...columnGroupingQ1, ...columnGroupingQ2, ...columnGroupingQ3, ...columnGroupingQ4]}
+        columnGroupingModel={[
+          ...columnGroupingQ1,
+          ...columnGroupingQ2,
+          ...columnGroupingQ3,
+          ...columnGroupingQ4,
+        ]}
+        slots={{
+          toolbar: EditToolbar,
+        }}
+        disableRowSelectionOnClick={true}
         checkboxSelection
       />
     </div>
   );
 }
-
-// columns={[
-//   ...columns,
-//   selectedQuartil ? renderQuartilColumn(selectedQuartil) : null,
-// ].filter(Boolean) as GridColDef[]}

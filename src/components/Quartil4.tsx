@@ -1,4 +1,3 @@
-// IOSI, placeni DA/NE	LPA, placen DA/NE	DI 1, DA, NE, N/P	Mesečni izvešta
 import {
   DataGrid,
   GridColDef,

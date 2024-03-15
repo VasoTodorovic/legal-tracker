@@ -1,4 +1,3 @@
-// LPA, placen DA/NE	DI 1, DA, NE, N/P	LPA Eko taksa i firmarina	Mesečni izveštaj
 import {
   DataGrid,
   GridColDef,
